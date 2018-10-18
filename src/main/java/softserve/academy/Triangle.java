@@ -9,28 +9,30 @@ public class Triangle implements Comparable<Triangle> {
     private double side3;
     private double square;
 
-    private Triangle(String name, double side1, double side2, double side3) {
+    Triangle(String name, double side1, double side2, double side3) {
         this.name = name;
         this.side1 = side1;
         this.side2 = side2;
         this.side3 = side3;
+
+        if (!isTriangle(side1, side2, side3)) {
+            throw new IllegalArgumentException("Cannot be sides of a triangle");
+        }
+    }
+
+    Triangle(String[] args) throws NumberFormatException {
+        this.name = args[0];
+        this.side1 = Double.parseDouble(args[1]);
+        this.side2 = Double.parseDouble(args[2]);
+        this.side3 = Double.parseDouble(args[3]);
+
+        if (!isTriangle(side1, side2, side3)) {
+            throw new IllegalArgumentException("Cannot be sides of a triangle");
+        }
     }
 
     private static boolean isTriangle(double side1, double side2, double side3) {
         return (side1 + side2 > side3 && side1 + side3 > side2 && side2 + side3 > side1);
-    }
-
-    static Triangle createTriangle(String[] parsedInput) throws IllegalArgumentException {
-        String name = parsedInput[0];
-        double side1 = Double.parseDouble(parsedInput[1]);
-        double side2 = Double.parseDouble(parsedInput[2]);
-        double side3 = Double.parseDouble(parsedInput[3]);
-
-        if (isTriangle(side1, side2, side3)) {
-            return new Triangle(name, side1, side2, side3);
-        } else {
-            throw new IllegalArgumentException();
-        }
     }
 
     double getSquare() {

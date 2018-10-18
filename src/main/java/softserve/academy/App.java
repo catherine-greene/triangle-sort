@@ -23,7 +23,7 @@ public class App {
             } else {
                 String[] parsedInput = parseInput(input);
                 try {
-                    triangle = Triangle.createTriangle(parsedInput);
+                    triangle = new Triangle(parsedInput);
                     triangles.add(triangle);
                     System.out.println("Do you want to add another triangle? (y/yes or n/no)");
                     answer = scanner.nextLine();
